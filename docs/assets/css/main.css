@@ -2850,8 +2850,8 @@
 		/* Header */
 
 			#header {
-				padding: 6em 3em 3em 3em;
-				width: 30%;
+				padding: 6em 3em 9em 3em;
+				width: 25%;
 			}
 
 				#header h1 {
@@ -2865,14 +2865,14 @@
 		/* Footer */
 
 			#footer {
-				padding: 0 3em 5em 3em;
-				width: 30%;
+				padding: 0 3em 2.5em 3em;
+				width: 25%;
 			}
 
 				#footer .copyright li {
 					border-left-width: 0;
 					display: block;
-					line-height: 2.25em;
+					line-height: 1.5em;
 					margin-left: 0;
 					padding-left: 0;
 				}
@@ -2880,10 +2880,10 @@
 		/* Main */
 
 			#main {
-				margin-left: 30%;
+				margin-left: 25%;
 				max-width: none;
 				padding: 6em 3em 3em 3em;
-				width: calc(100% - 30%);
+				width: calc(100% - 25%);
 			}
 
 	}
