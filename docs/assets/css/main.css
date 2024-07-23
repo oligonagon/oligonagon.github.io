@@ -2474,7 +2474,7 @@ html {
 		.work-item .image {
 			margin: 0 0 1.5em 0;
 			width: 100%;
-			height: auto;
+			/* height: auto; */
 		}
 
 		.work-item h3 {
@@ -2487,6 +2487,23 @@ html {
 			line-height: 1.5em;
 			margin: 0;
 		}
+
+/* for videos */
+	.video-container {
+		position: relative;
+		padding-bottom: 50%; /* Aspect ratio */
+		height: 0;
+		overflow: hidden;
+		max-width: 100%;
+	}
+  
+	.video-container iframe {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
 
 /* Header */
 
