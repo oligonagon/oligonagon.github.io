@@ -2513,18 +2513,18 @@
 	#footer {
 		bottom: 0;
 		left: 0;
-		padding: 0 4em 6em 0;
+		padding: 0 4em 1em 0;
 		position: fixed;
 		text-align: right;
 		width: 25%;
 	}
 
-		#footer .icons {
+		#header .icons {
 			margin: 1em 0 0 0;
 		}
 
-			#footer .icons a {
-				color: rgba(255, 255, 255, 0.4);
+			#header .icons a {
+				color: rgba(255, 255, 255, 0.653);
 			}
 
 		#footer .copyright {
@@ -2850,6 +2850,20 @@
 				font-size: 12pt;
 			}
 
+		/* Footer */
+
+		#footer {
+			padding: 0 3em 1em 3em; /* adjust logo symbol padding */
+			width: 25%;
+		}
+
+			#footer .copyright li {
+				border-left-width: 0;
+				display: block;
+				line-height: 1.5em;
+				margin-left: 0;
+				padding-left: 0;
+			}
 	}
 
 /* Large */
