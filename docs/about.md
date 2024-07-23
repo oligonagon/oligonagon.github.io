@@ -10,6 +10,6 @@ I am a 5th year student at UC Berkeley studying Genetics & Plant Biology and Com
 
     Things I am currently working on:
 
-    * Grad school apps
     * This website
+    * Grad school apps
     * Secret comp bio project
