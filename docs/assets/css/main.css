@@ -217,11 +217,17 @@
 
 /* Grid */
 
+	.column {
+		flex: 50%;
+		vertical-align:top;
+	}
+
 	.row {
 		border-bottom: solid 1px transparent;
 		-moz-box-sizing: border-box;
 		-webkit-box-sizing: border-box;
 		box-sizing: border-box;
+		display: flex;
 	}
 
 	.row > * {
@@ -1621,7 +1627,7 @@
 
 	h2 {
 		font-size: 1.5em;
-		line-height: 1.5em;
+		line-height: 0em;
 	}
 
 	h3 {
@@ -2448,6 +2454,8 @@
 
 		.work-item .image {
 			margin: 0 0 1.5em 0;
+			width: 100%;
+			height: auto;
 		}
 
 		.work-item h3 {
@@ -2465,7 +2473,7 @@
 
 	#header {
 		background-color: #1f1815;
-		background-attachment: fixed,								fixed;
+		background-attachment: scroll,								fixed;
 		background-image: url("../../images/nebraska.jpg"), url("../../images/nebraska.jpg");
 		background-position: top left,							top left;
 		background-repeat: repeat,								no-repeat;
@@ -2822,7 +2830,7 @@
 	}
 
 	body.is-touch #header {
-		background-attachment: fixed;
+		background-attachment: scroll;
 		background-size: auto, cover;
 	}
 
@@ -2866,7 +2874,7 @@
 		/* Footer */
 
 			#footer {
-				padding: 0 3em 2.5em 3em;
+				padding: 0 3em 1em 3em; /* adjust logo symbol padding */
 				width: 25%;
 			}
 
