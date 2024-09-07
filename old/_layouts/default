@@ -1,0 +1,38 @@
+---
+---
+
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en-US" }}">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+{% seo %}
+    <link rel="stylesheet" href="{{ "_site\assets\css\style.css?v=" | append: site.github.build_revision | relative_url }}">
+    {% include head-custom.html %}
+  </head>
+  <body>
+    <nav class="text-right text-gray">
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/art/">Art</a></li>
+          <li><a href="/code/">Code</a></li>
+        </ul>
+    </nav>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <!-- {% if site.title and site.title != page.title %}
+      <h1><a href="{{ "_site\assets\css\style.css" | absolute_url }}">{{ site.title }}</a></h1>
+      {% endif %} -->
+
+      {{ content }}
+
+    </div>
+
+</body>
+
+
+
+{{content}}
+
+</html>
