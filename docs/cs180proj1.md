@@ -15,7 +15,7 @@ The goal of this assignment was to automatically align the three channels of the
 
 To align the smaller JPG images, I first implemented a naive approach, testing all alignments over a small window size of [-20,20]. Within this window, I used np.roll to move one channel horizontally and vertically. For each alignment position within the window, I used a simple L2 norm between the raw pixels as my alignment metric, and saved the translation coordinates that resulted in the lowest L2 norm. For instance, when aligning the green to the red channel, I first translated the green channel, then took the Euclidean distance for each pixel between the two channels and took the sum over all of the results for each pixel to obtain one scalar value that represents the overall L2 norm for the alignment. 
 
-To prevent insignifiant parts of the image (such as black borders) from affecting this calculation, I cropped each side of each channel by 20% of its original size, resulting in a cropping of 40% of the image height and width. Then, once I obtained the best coordinates from my alignment metric, I used the coordinates to perform the final alignment on the uncropped version of the channels.
+To prevent insignificant parts of the image (such as black borders) from affecting this calculation, I cropped each side of each channel by 20% of its original size, resulting in a cropping of 40% of the image height and width. Then, once I obtained the best coordinates from my alignment metric, I used the coordinates to perform the final alignment on the uncropped version of the channels.
 
 <section id="two">
 <div class="column">
@@ -41,7 +41,7 @@ To prevent insignifiant parts of the image (such as black borders) from affectin
 </div>
 </section>
 
-For the longest time I was getting the above middle image for cathedral.jpg. It looked much better than the unaligned version, but wasn't quite there yet. What fixed the issue was converting my channels from unsigned integers (which ranged from 0-255) to float values. I realized that for unsigned integers, negative differecnes would be represented inaccurately. Converting to float solved this issue and allowed for negative differences to be preserved in the L2 norm calculation. 
+For the longest time I was getting the above middle image for cathedral.jpg. It looked much better than the unaligned version, but wasn't quite there yet. What fixed the issue was converting my channels from unsigned integers (which ranged from 0-255) to float values. I realized that for unsigned integers, negative differences would be represented inaccurately. Converting to float solved this issue and allowed for negative differences to be preserved in the L2 norm calculation. 
 
 Below are the two more JPG images, aligned with the naive method. Each one took a negligible amount of time to process (less than 1 second).
 
@@ -75,7 +75,7 @@ Below are the two more JPG images, aligned with the naive method. Each one took 
 
 ## 2. Alignment with Image Pyramid Speedup
 
-The naive implementation of searching over a [-20,20] window does not work efficiently for the large TIFF images. For these images, I implemented an image pyramid speedup method. For this implementation, I used recursion and np.resize to downscale the resolution of the image by a factor of 0.5 per layer, until the deepest layer had an image at a resolution under 100x100 pixels. This turned out to be 5 layers for each iamge. At this deepest layer, I then ran the naive implementation from earlier, over a [-20,20] window. Once this returns a set of 'best' coordinates, I multiplied these coordinates by 2 (to account for the 0.5x downscaling of resolution at that layer), passed them up to the next layer, and performed a naive alignment over a much smaller [-2,2] window. This repeated until the coordinates are passed up to the topmost layer. Using this method, I was able to align the large iamges without naively searching over a huge window in the full resolution channels. Only the lowest resolution layer had the regular [20,20] search window, while each layer above the deepest layer only had a [-2,2] window. I had initially decreased the search window linearly per layer (i.e. decrease window size by 2 for each layer up), but this still gave me a really long runtime. The method of keeping the window size small and fixed at the rest of the layers made the alignment much faster, with each image taking <5 seconds to process.
+The naive implementation of searching over a [-20,20] window does not work efficiently for the large TIFF images. For these images, I implemented an image pyramid speedup method. For this implementation, I used recursion and np.resize to downscale the resolution of the image by a factor of 0.5 per layer, until the deepest layer had an image at a resolution under 100x100 pixels. This turned out to be 5 layers for each image. At this deepest layer, I then ran the naive implementation from earlier, over a [-20,20] window. Once this returned a set of 'best' coordinates, I multiplied these coordinates by 2 (to account for the 0.5x downscaling of resolution at that layer), passed them up to the next layer, and performed a naive alignment over a much smaller [-2,2] window. This repeated until the coordinates are passed up to the topmost layer. Using this method, I was able to align the large images without naively searching over a huge window in the full resolution channels. Only the lowest resolution layer had the regular [20,20] search window, while each layer above the deepest layer only had a [-2,2] window. I had initially decreased the search window linearly per layer (i.e. decrease window size by 2 for each layer up), but this still gave me a really long runtime. The method of keeping the window size small and fixed at the rest of the layers made the alignment much faster, with each image taking <5 seconds to process.
 
 Similarly to my naive implementation, I also cropped the channels before passing them into the pyramid speedup implementation. This time, I cropped 15% from each side, resulting in an overall 30% cropping of the image height and width. 
 
@@ -281,7 +281,7 @@ To fix the Emir's alignment, I used edge detection instead of the L2 norm. There
 
 ## 3. Auto cropping borders (Bell & Whistle #2)
 
-All of the images above have a bit of uneven borders that are not part of the image. So I attempted to implement a way to autodetect and autocrop them.
+All of the images above have some uneven borders that are not part of the image. So I attempted to implement an automatic cropping function.
 
 ## 4. Extra images for fun
 
