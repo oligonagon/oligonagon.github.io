@@ -86,7 +86,7 @@ Below are the two more JPG images, aligned with the naive method. Each one took 
 <a name = "twoo"></a>
 ## 2. Alignment with Image Pyramid Speedup
 
-The naive implementation of searching over a [-20,20] window does not work efficiently for the large TIFF images. For these images, I implemented an image pyramid speedup method. For this implementation, I used recursion and np.resize to downscale the resolution of the image by a factor of 0.5 per layer, until the deepest layer had an image at a resolution under 100x100 pixels. This turned out to be 5 layers for each image. At this deepest layer, I then ran the naive implementation from earlier, over a [-20,20] window. Once this returned a set of 'best' coordinates, I multiplied these coordinates by 2 (to account for the 0.5x downscaling of resolution at that layer), passed them up to the next layer, and performed a naive alignment over a much smaller [-2,2] window. This repeated until the coordinates are passed up to the topmost layer. Using this method, I was able to align the large images without naively searching over a huge window in the full resolution channels. Only the lowest resolution layer had the regular [20,20] search window, while each layer above the deepest layer only had a [-2,2] window. I had initially decreased the search window linearly per layer (i.e. decrease window size by 2 for each layer up), but this still gave me a really long runtime. The method of keeping the window size small and fixed at the rest of the layers made the alignment much faster, with each image taking <5 seconds to process.
+The naive implementation of searching over a [-20,20] window does not work efficiently for the large TIFF images. For these images, I implemented an image pyramid speedup method. For this implementation, I used recursion and np.resize to downscale the resolution of the image by a factor of 0.5 per layer, until the deepest layer had an image at a resolution under 100x100 pixels. This turned out to be 5 layers for each image. At this deepest layer, I then ran the naive implementation from earlier, over a [-20,20] window. Once this returned a set of 'best' coordinates, I multiplied these coordinates by 2 (to account for the 0.5x downscaling of resolution at that layer), passed them up to the next layer, and performed a naive alignment over a much smaller [-2,2] window. This repeated until the coordinates are passed up to the topmost layer. Using this method, I was able to align the large images without naively searching over a huge window in the full resolution channels. Only the lowest resolution layer had the regular [-20,20] search window, while each layer above the deepest layer only had a [-2,2] window. I had initially decreased the search window linearly per layer (i.e. decrease window size by 2 for each layer up), but this still gave me a really long runtime. The method of keeping the window size small and fixed at the rest of the layers made the alignment much faster, with each image taking <5 seconds to process.
 
 Similarly to my naive implementation, I also cropped the channels before passing them into the pyramid speedup implementation. This time, I cropped 15% from each side, resulting in an overall 30% cropping of the image height and width. 
 
@@ -296,7 +296,7 @@ To fix the Emir's alignment, I used edge detection instead of the L2 norm. There
 
 All of the images above have some uneven borders that are not part of the image. So I attempted to implement an automatic cropping function.
 
-I focused on getting rid of the black border that exists around each of the original B/W color channel strips, as seen in the examples below:
+I focused on getting rid of the black border that exists around each of the original B/W color channel image strips, as seen in the examples below:
 
 <section id="two">
 <div class="column">
@@ -397,7 +397,7 @@ The following images were generated using this autocropping method, with a thres
 </div>
 </section>
 
-It's a noticeable improvement compared to the uncropped alignments, but a lot of the images still had some black or colored borders. I think part of this is due to the quality of the B/W color channel strips; some of the images had more washed out black borders than others, especially on the top and left sides. To fix this in the future, I would probably try to play around with the threshold value, or perhaps find a way to auto-darken the borders before autocropping. 
+It's a noticeable improvement compared to the uncropped alignments, but a lot of the images still had some black or colored borders. I think part of this is due to the quality of the B/W color channel image strips; some of the images had more washed out black borders than others, especially on the top and left sides. To fix this in the future, I would probably try to play around with the threshold value, or perhaps find a way to auto-darken the borders before autocropping. 
 
 <a name = "five"></a>
 ## 5. Extra images for fun
