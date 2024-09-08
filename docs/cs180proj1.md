@@ -11,6 +11,16 @@ permalink: /cs180proj1/
 
 The goal of this assignment was to automatically align the three channels of these preserved RGB glass plate negatives and produce a color image, something Prokudin-Gorskii himself was sadly unable to accomplish. 
 
+## Table of Contents
+
+1. <a href="#one">Naive Alignment Method</a>
+2. <a href="#twoo">Alignment with Image Pyramid Speedup</a>
+3. <a href="#three">Aligning emir.tif (Bell & Whistle #1)</a>
+4. <a href="#four">Auto cropping borders (Bell & Whistle #2)</a>
+5. <a href="#five">Extra images for fun</a>
+
+
+<a name = "one"></a>
 ## 1. Naive Alignment Method
 
 To align the smaller JPG images, I first implemented a naive approach, testing all alignments over a small window size of [-20,20]. Within this window, I used np.roll to move one channel horizontally and vertically. For each alignment position within the window, I used a simple L2 norm between the raw pixels as my alignment metric, and saved the translation coordinates that resulted in the lowest L2 norm. For instance, when aligning the green to the red channel, I first translated the green channel, then took the Euclidean distance for each pixel between the two channels and took the sum over all of the results for each pixel to obtain one scalar value that represents the overall L2 norm for the alignment. 
@@ -73,6 +83,7 @@ Below are the two more JPG images, aligned with the naive method. Each one took 
 </div>
 </section>
 
+<a name = "twoo"></a>
 ## 2. Alignment with Image Pyramid Speedup
 
 The naive implementation of searching over a [-20,20] window does not work efficiently for the large TIFF images. For these images, I implemented an image pyramid speedup method. For this implementation, I used recursion and np.resize to downscale the resolution of the image by a factor of 0.5 per layer, until the deepest layer had an image at a resolution under 100x100 pixels. This turned out to be 5 layers for each image. At this deepest layer, I then ran the naive implementation from earlier, over a [-20,20] window. Once this returned a set of 'best' coordinates, I multiplied these coordinates by 2 (to account for the 0.5x downscaling of resolution at that layer), passed them up to the next layer, and performed a naive alignment over a much smaller [-2,2] window. This repeated until the coordinates are passed up to the topmost layer. Using this method, I was able to align the large images without naively searching over a huge window in the full resolution channels. Only the lowest resolution layer had the regular [20,20] search window, while each layer above the deepest layer only had a [-2,2] window. I had initially decreased the search window linearly per layer (i.e. decrease window size by 2 for each layer up), but this still gave me a really long runtime. The method of keeping the window size small and fixed at the rest of the layers made the alignment much faster, with each image taking <5 seconds to process.
@@ -162,12 +173,12 @@ Similarly to my naive implementation, I also cropped the channels before passing
     </div>
     <div class="row">
     <article class="proj-item-2">
-        <img src="../images/180proj1/no_align_ico.jpg"  alt="" />         
-        <h3>icon.tif, no alignment</h3>
+        <img src="../images/180proj1/no_align_lad.jpg"  alt="" />         
+        <h3>lady.tif, no alignment</h3>
     </article>
     <article class="proj-item-2">
-        <img src="../images/180proj1/align_ico.jpg"  alt="" />         
-        <h3>Aligned, G: (16,40), R: (22,90)</h3>
+        <img src="../images/180proj1/align_lad.jpg"  alt="" />         
+        <h3>Aligned, G: (8,52), R: (12,112)</h3>
         <br/>
     </article>
     </div>
@@ -184,12 +195,12 @@ Similarly to my naive implementation, I also cropped the channels before passing
     </div>
     <div class="row">
     <article class="proj-item-2">
-        <img src="../images/180proj1/no_align_lad.jpg"  alt="" />         
-        <h3>lady.tif, no alignment</h3>
+        <img src="../images/180proj1/no_align_ico.jpg"  alt="" />         
+        <h3>icon.tif, no alignment</h3>
     </article>
     <article class="proj-item-2">
-        <img src="../images/180proj1/align_lad.jpg"  alt="" />         
-        <h3>Aligned, G: (8,52), R: (12,112)</h3>
+        <img src="../images/180proj1/align_ico.jpg"  alt="" />         
+        <h3>Aligned, G: (16,40), R: (22,90)</h3>
         <br/>
         <br/>
     </article>
@@ -197,6 +208,7 @@ Similarly to my naive implementation, I also cropped the channels before passing
 </div>
 </section>
 
+<a name = "three"></a>
 ## 3. Aligning emir.tif (Bell & Whistle #1)
 
 Aligning emir.tif proved a little difficult using the L2 norm alignment metric. This was because the raw pixels of the channels did not necessarily correspond to proper alignment due to the colorful nature of the Emir's dress. I even tried to change the base channel of alignment (i.e. aligning red and blue to green instead of green and red to blue), but this did not improve the results too much.
@@ -279,13 +291,118 @@ To fix the Emir's alignment, I used edge detection instead of the L2 norm. There
 </div>
 </section>
 
-## 3. Auto cropping borders (Bell & Whistle #2)
+<a name = "four"></a>
+## 4. Auto cropping borders (Bell & Whistle #2)
 
 All of the images above have some uneven borders that are not part of the image. So I attempted to implement an automatic cropping function.
 
-## 4. Extra images for fun
+I focused on getting rid of the black border that exists around each of the original B/W color channel strips, as seen in the examples below:
 
-Out of curiosity, I explored more images on the Library of Congress website. Below are some of my favorites. All of them were aligned with pyramid speedup and L2 norm alignment metric, except for vladimir.tif and mine.tif (they needed the Sobel edge detection to align properly).
+<section id="two">
+<div class="column">
+    <div class="row">
+        <article class="proj-item-3">
+            <img src="../images/180proj1/cathedral.jpg"  alt="" />         
+        </article>
+        <article class="proj-item-3">
+            <img src="../images/180proj1/monastery.jpg"  alt="" />         
+        </article>
+        <article class="proj-item-3">
+            <img src="../images/180proj1/tobolsk.jpg"  alt="" />         
+            <br/>
+        </article>
+    </div>
+</div>
+</section>
+
+To accomplish this task, I took each of the B/W channels and summed them twice: once across the horizontal axis only and once across the vertical axis only. Then I divided each sum by the number of pixels that were added together. This resulted in two arrays per channel; one representing average B/W values across each pixel row, and the other representing average B/W values across each pixel column. With this information, I was able to easily crop the left, right, top and bottom sides of the image by determining a threshold representing the color black (close to 0) and determining the innermost rows and columns with average pixel values that fell under this threshold. To avoid long runtimes, I only scanned through rows and columns in the outer thirds of the image. I did this for each of the three channels per image, again taking the innermost rows and columns from the channels to determine the final cropping "coordinates" for the image.
+
+I kept my autocropping implementation completely separate from my alignment implementation. In other words, I obtained the alignment coordinates and cropping coordinates separately, then applied the cropping coordinates only after it was properly aligned. This was done because I had found pre-alignment autocropping to affect the quality of the output.
+
+The following images were generated using this autocropping method, with a threshold average pixel value of 0.2. 
+
+<section id="two">
+<div class="column">
+    <div class="row">
+        <article class="proj-item-3">
+            <img src="../images/180proj1/cropnorm_cathedral.jpg"  alt="" />         
+            <h3>cathedral.jpg</h3>
+        </article>
+        <article class="proj-item-3">
+            <img src="../images/180proj1/cropnorm_monastery.jpg"  alt="" />         
+            <h3>monastery.jpg</h3>
+        </article>
+        <article class="proj-item-3">
+            <img src="../images/180proj1/cropnorm_tobolsk.jpg"  alt="" />         
+            <h3>tobolsk.jpg</h3>
+            <br/>
+        </article>
+    </div>
+    <div class="row">
+        <article class="proj-item-3">
+            <img src="../images/180proj1/cropnorm_train.jpg"  alt="" />         
+            <h3>train.tif</h3>
+        </article>
+        <article class="proj-item-3">
+            <img src="../images/180proj1/cropnorm_church.jpg"  alt="" />         
+            <h3>church.tif</h3>
+        </article>
+        <article class="proj-item-3">
+            <img src="../images/180proj1/cropnorm_self_portrait.jpg"  alt="" />         
+            <h3>self_portrait.tif</h3>
+            <br/>
+        </article>
+    </div>
+    <div class="row">
+        <article class="proj-item-3">
+            <img src="../images/180proj1/cropnorm_sculpture.jpg"  alt="" />         
+            <h3>sculpture.tif</h3>
+        </article>
+        <article class="proj-item-3">
+            <img src="../images/180proj1/cropnorm_three_generations.jpg"  alt="" />         
+            <h3>three_generations.tif</h3>
+        </article>
+        <article class="proj-item-3">
+            <img src="../images/180proj1/cropnorm_onion_church.jpg"  alt="" />         
+            <h3>onion_church.tif</h3>
+            <br/>
+        </article>
+    </div>
+    <div class="row">
+        <article class="proj-item-3">
+            <img src="../images/180proj1/cropnorm_melons.jpg"  alt="" />         
+            <h3>melons.tif</h3>
+        </article>
+        <article class="proj-item-3">
+            <img src="../images/180proj1/cropnorm_lady.jpg"  alt="" />         
+            <h3>lady.tif</h3>
+        </article>
+        <article class="proj-item-3">
+            <img src="../images/180proj1/cropnorm_harvesters.jpg"  alt="" />         
+            <h3>harvesters.tif</h3>
+            <br/>
+        </article>
+    </div>
+    <div class="row">
+        <article class="proj-item-2">
+            <img src="../images/180proj1/cropnorm_icon.jpg"  alt="" />         
+            <h3>icon.tif</h3>
+        </article>
+        <article class="proj-item-2">
+            <img src="../images/180proj1/cropnorm_emir.jpg"  alt="" />         
+            <h3>emir.tif</h3>
+            <br/>
+        </article>
+    </div>
+</div>
+</section>
+
+It's a noticeable improvement compared to the uncropped alignments, but a lot of the images still had some black or colored borders. I think part of this is due to the quality of the B/W color channel strips; some of the images had more washed out black borders than others, especially on the top and left sides. To fix this in the future, I would probably try to play around with the threshold value, or perhaps find a way to auto-darken the borders before autocropping. 
+
+<a name = "five"></a>
+## 5. Extra images for fun
+
+For fun, I aligned some more images from the Library of Congress website. Below are some of my favorites. All of them were aligned with pyramid speedup and L2 norm alignment metric, except for vladimir.tif and mine.tif (they needed the Sobel edge detection to align properly).
 
 <section id="two">
 <div class="column">
@@ -323,10 +440,48 @@ Out of curiosity, I explored more images on the Library of Congress website. Bel
             <h3>mine.tif</h3>
             <h3>G: (22,50), R: (32,116)</h3>
             <br/>
+        </article>
+    </div>
+</div>
+</section>
+
+#### With cropping at a threshold of 0.2:
+<section id="two">
+<div class="column">
+    <div class="row">
+        <article class="proj-item-3">
+            <img src="../images/180proj1/cropnorm_aleksandrov.jpg"  alt="" />         
+            <h3>aleksandrov.tif</h3>
+        </article>
+        <article class="proj-item-3">
+            <img src="../images/180proj1/cropnorm_naberezhnaia.jpg"  alt="" />         
+            <h3>naberezhnaia.tif</h3>
+        </article>
+        <article class="proj-item-3">
+            <img src="../images/180proj1/cropnorm_raduga.jpg"  alt="" />         
+            <h3>raduga.tif</h3>
+            <br/>
+        </article>
+    </div>
+    <div class="row">
+        <article class="proj-item-3">
+            <img src="../images/180proj1/cropnorm_visyachii.jpg"  alt="" />         
+            <h3>visyachii.tif</h3>
+        </article>
+        <article class="proj-item-3">
+            <img src="../images/180proj1/cropnorm_vladimir.jpg"  alt="" />         
+            <h3>vladimir.tif</h3>
+        </article>
+        <article class="proj-item-3">
+            <img src="../images/180proj1/cropnorm_mine.jpg"  alt="" />         
+            <h3>mine.tif</h3>
+            <br/>
             <br/>
         </article>
     </div>
 </div>
 </section>
 
-## THE END
+<center>
+<h2>--THE END--</h2>
+</center>
