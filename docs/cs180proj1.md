@@ -483,5 +483,5 @@ For fun, I aligned some more images from the Library of Congress website. Below 
 </section>
 
 <center>
-<h2>--THE END--</h2>
+<h2>--- THE END ---</h2>
 </center>
