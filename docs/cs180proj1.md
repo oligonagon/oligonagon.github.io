@@ -213,7 +213,7 @@ Similarly to my naive implementation, I also cropped the channels before passing
 <a name = "three"></a>
 ## 3. Aligning emir.tif (Bell & Whistle #1)
 
-Aligning emir.tif proved a little difficult using the L2 norm alignment metric. This was because the raw pixels of the channels did not necessarily correspond to proper alignment due to the colorful nature of the Emir's dress. I even tried to change the base channel of alignment (i.e. aligning red and blue to green instead of green and red to blue), but this did not improve the results too much.
+Aligning emir.tif proved a little difficult using the raw pixel L2 norm alignment metric. This was because the raw pixels of the channels did not necessarily correspond to proper alignment due to the colorful nature of the Emir's dress. I even tried to change the base channel of alignment (i.e. aligning red and blue to green instead of green and red to blue), but this did not improve the results too much.
 
 <section id="two">
 <div class="column">
@@ -242,7 +242,7 @@ Aligning emir.tif proved a little difficult using the L2 norm alignment metric. 
 </div>
 </section>
 
-To fix the Emir's alignment, I used edge detection instead of the L2 norm. There seemed to be two common types of filters for edge detection: Sobel and Canny. The lines in the Sobel filtered channels seemed much fainter than the Canny filtered channels, but both gave similarly good results. The processing time for each image also took less than 5 seconds using the pyramid speedup in addition to the filters.
+To fix the Emir's alignment, I took the L2 norm between edge detection filters instead of the raw pixel values. There seemed to be two common types of filters for edge detection: Sobel and Canny. The lines in the Sobel filtered channels seemed much fainter than the Canny filtered channels, but both gave similarly good results. The processing time for each image also took less than 5 seconds using the pyramid speedup in addition to the filters.
 
 <section id="two">
 <div class="column">
@@ -404,7 +404,7 @@ It's a noticeable improvement compared to the uncropped alignments, but a lot of
 <a name = "five"></a>
 ## 5. Extra images for fun
 
-For fun, I aligned some more images from the Library of Congress website. Below are some of my favorites. All of them were aligned with pyramid speedup and L2 norm alignment metric, except for vladimir.tif and mine.tif (they needed the Sobel edge detection to align properly).
+For fun, I aligned some more images from the Library of Congress website. Below are some of my favorites. All of them were aligned with pyramid speedup and raw pixel L2 norm alignment metric, except for vladimir.tif and mine.tif (they needed the Sobel edge detection filters to align properly).
 
 <section id="two">
 <div class="column">
