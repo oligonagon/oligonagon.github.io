@@ -31,7 +31,7 @@ permalink: /cs180proj2/
 
 <a name = "1a"></a>
 ## Finite Difference Operator
-In this part, I make 2 simple filters, Dx and Dy. By convolving an image with these filters, I can get the partial derivativeof the image in x and y.
+In this part, I make 2 simple filters, Dx and Dy. Dx is a 1x2 array with values 1 and -1. Dy is a 2x1 array also with values 1 and -1. By convolving an image with these filters, I can get the partial derivative of the image in x and y.
 
 <section id="two">
 <div class="column">
@@ -543,7 +543,7 @@ I also used this multiresolution blending magic and crafted an irregular mask to
 <br/>
 </section>
 
-Finally, I used this multiresolution blending magic on Aaron so that he can swim in Joffre Lakes.
+Finally, I used this multiresolution blending magic on Aaron so that he can swim in the Joffre Lakes.
 
 <section id="two">
 <div class="column">
@@ -580,9 +580,9 @@ Finally, I used this multiresolution blending magic on Aaron so that he can swim
 </div>
 </section>
 
-## A most important thing I learned from the project
+## A most important thing I learned from this project
 
-A most important thing I learned from this project was the impact of normalizing images. When I was making the Laplacing stacks, I spent a LOT of time trying to figure out the correct way to normalize the images (and when to normalize them) in order to get images that looked right. I also spent quite some time getting taj.jpg to sharpen properly due to what I believed was normalizing issues (though eventually I just tried a different method and it worked).
+A most important thing I learned from this project was the impact of normalizing images. When I was making the Laplacian stacks, I spent a LOT of time trying to figure out the correct way to normalize the images (and when to normalize them) in order to get images that looked right. I also spent quite some time getting taj.jpg to sharpen properly due to what I believed was normalizing issues (though eventually I just tried a different method and it worked).
 
 <center>
 <h2>--- THE END ---</h2>
