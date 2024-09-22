@@ -578,6 +578,7 @@ Finally, I used this multiresolution blending magic on Aaron so that he can swim
     </div>
     <br/>
 </div>
+</section>
 
 ## A most important thing I learned from the project
 
