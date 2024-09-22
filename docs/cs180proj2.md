@@ -22,11 +22,12 @@ permalink: /cs180proj2/
     * <a href="#2d">Multiresolution Blending</a>
         * <a href="#2di">Additional examples</a>
 
+<br/>
 <a name = "one"></a>
 <h2 align="center">
 ----- Fun with Filters ----- 
-<br/>
 </h2>
+<br/>
 
 <a name = "1a"></a>
 ## Finite Difference Operator
@@ -136,13 +137,14 @@ It is possible to shuffle the steps to obtain the same results as above. We can 
 </div>
 </section>
 
-I'm not really sure why the first version (blurring then convolving) resulted in darked dxdy images, but the images between the two versions are relatively the same (it could be a display issue?). Additionally, the final binarized image between the two versions is exactly the same. 
+As we can see, this set of images look exactly the same as the set of images from earlier.
 
+<br/>
 <a name = "twoo"></a>
 <h2 align="center">
 ----- Fun with Frequencies -----
-<br/>
 </h2>
+<br/>
 <a name = "2a"></a>
 ## Image 'Sharpening'
 
@@ -440,7 +442,7 @@ Something really cool about Laplacian stacks is that if you add all of the unnor
 <a name = "2d"></a>
 ## Multiresolution Blending
 
-Using the Gaussian and Laplacian stacks, I can summon the oraple. 
+Using the knowledge of Gaussian and Laplacian stacks, we can summon the oraple. 
 
 I first created a mask, split vertically so that the left half was white and the right half was black. Then I created a Gaussian stack of the mask and multiplied each mask level elementwise by the corresponding Laplacian stack level of the apple and orange images (for the orange image, I multiplied by (1 - mask) to obtain the correct side of the orange). After normalizing each of these products, I took the sum across all of the levels, then added the blurriest Gaussian level multiplied by its corresponding mask level. After one final normalization, I obtained the beautiful oraple.
 
@@ -448,7 +450,7 @@ I first created a mask, split vertically so that the left half was white and the
 <div class="column">
     <div class="row">
         <article class="proj-item-1">
-            <img src="../images/180proj2/oraple.png" width="500vw" alt="" />
+            <img src="../images/180proj2/oraple_corrected.png" width="500vw" alt="" />
             <br/>
         </article>
     </div>
@@ -456,14 +458,30 @@ I first created a mask, split vertically so that the left half was white and the
 <br/>
 </section>
 
-A visual representation of the five Laplacian layers and the last Gaussian layer that was added to produce the final image. The Gaussian filter parameters I used were different from the ones I used to produce the Gaussian and Laplacian stacks from the previous part. This was because the same parameters did not produce a clear enough oraple. 
+A visual representation of the five Laplacian layers and the last Gaussian layer that was added to produce the final image. The Gaussian filter parameters I used were different from the ones I used to produce the Gaussian and Laplacian stacks from the previous part. This was because the same parameters did not produce a clear enough oraple; the mask especially needed a stronger blur. 
 
 <section id="two">
 <div class="column">
     <div class="row">
         <article class="proj-item-1">
-            <img src="../images/180proj2/oraple_grid_final.jpg" width="400vw" alt="" />
-            <br/>
+            <center>
+            <img src="../images/180proj2/apple_orange_blur.jpg" width="800vw" alt="" />
+            <h4>Gaussian stacks used for oraple creation</h4>
+            </center>
+        </article>
+    </div>
+</div>
+<br/>
+</section>
+
+<section id="two">
+<div class="column">
+    <div class="row">
+        <article class="proj-item-1">
+            <center>
+            <img src="../images/180proj2/oraple_grid.jpg" width="500vw" alt="" />
+            <h4>Laplacian stacks (+ last Gaussian layer) masked and added together to produce the last row</h4>
+            </center>
         </article>
     </div>
 </div>
