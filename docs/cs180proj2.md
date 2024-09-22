@@ -444,7 +444,7 @@ Something really cool about Laplacian stacks is that if you add all of the unnor
 
 Using the knowledge of Gaussian and Laplacian stacks, we can summon the oraple. 
 
-I first created a mask, split vertically so that the left half was white and the right half was black. Then I created a Gaussian stack of the mask and multiplied each mask level elementwise by the corresponding Laplacian stack level of the apple and orange images (for the orange image, I multiplied by (1 - mask) to obtain the correct side of the orange). After normalizing each of these products, I took the sum across all of the levels, then added the blurriest Gaussian level multiplied by its corresponding mask level. After one final normalization, I obtained the beautiful oraple.
+I first created a mask, split vertically so that the left half was white and the right half was black. Then I created a Gaussian stack of the mask and multiplied each mask level elementwise by the corresponding Laplacian stack level of the apple and orange images. Note that for the orange image, I multiplied by (1 - mask) to obtain the correct side of the orange. Afterwards, I took the sum across all of these products, then added the blurriest Gaussian levels multiplied by their corresponding mask level. After one final normalization, I obtained the beautiful oraple.
 
 <section id="two">
 <div class="column">
