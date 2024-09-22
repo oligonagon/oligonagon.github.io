@@ -150,7 +150,7 @@ As we can see, this set of images look exactly the same as the set of images fro
 
 In this part, I attempt to 'sharpen' various images by adding a bit more of the high frequencies into the image. To do this, I first apply a low pass (Gaussian) filter onto the image and the lowpass image from the original image to isolate the higher frequencies. Then I add these higher frequencies back into the original image, multiplied by some scaling coefficient alpha. There is some clipping of pixel values when this happens, but it does not seem to negatively affect the quality of the final result. 
 
-I initially tried to implement the formal definition of an unsharp mask filter so that I could pre-compute one filter to use on the original image. For some reason this did not work out so well, so I stuck to the earlier (and I feel more intuitive) steps of blurring, subtracting, then scaling and readding the higher frequencies. 
+I initially tried to implement the formal definition of an unsharp mask filter so that I could pre-compute a single filter to use on the original image. For some reason this did not work out so well, so I stuck to the earlier (and, in my opinion, more intuitive) steps of blurring, subtracting, then scaling and re-adding the higher frequencies.
 
 <section id="two">
 <div class="column">
@@ -176,7 +176,7 @@ The results for taj.jpg look pretty good for alpha=2; you can see the bricks on 
 </div>
 </section>
 
-You might need to open the image in a new tab and zoom in a bit to see this one. I really like the effect of 'sharpening' on this image as it makes the letters on the Yifang banner sharper, as well as the wall in the alleyway beside the shop. Similar to taj.png, you can see the introduction of some artifacts and graininess by alpha=10, and they are more obvious at alpha=20.
+You might need to open the image in a new tab and zoom in a bit to see this one. I really like the effect of 'sharpening' on this image as it makes the letters on the Yifang banner sharper, as well as the wall in the alleyway beside the shop. Similar to taj.jpg, you can see the introduction of some artifacts and graininess by alpha=10, and they are more obvious at alpha=20.
 
 In addition to sharpening images, I try to 'recover' the sharpness of an image by blurring it and applying my sharpening function on the blurred image. I found this to somewhat work depending on the image and the level of blur. The below example hurts my eyes a bit...
 
