@@ -163,7 +163,7 @@ I initially tried to implement the formal definition of an unsharp mask filter s
 </div>
 </section>
 
-The results for taj.png look pretty good for alpha=2; you can see the bricks on the building more clearly. However, when alpha is further increased, some unwanted artifacts start to emerge. At alpha=10, some contrasting edges start to appear too thick, giving the image a bit of a fried look. 
+The results for taj.jpg look pretty good for alpha=2; you can see the bricks on the building more clearly. However, when alpha is further increased, some unwanted artifacts start to emerge. At alpha=10, some contrasting edges start to appear too thick, giving the image a bit of a fried look. 
 
 <section id="two">
 <div class="column">
@@ -578,6 +578,10 @@ Finally, I used this multiresolution blending magic on Aaron so that he can swim
     </div>
     <br/>
 </div>
+
+## A most important thing I learned from the project
+
+A most important thing I learned from this project was the impact of normalizing images. When I was making the Laplacing stacks, I spent a LOT of time trying to figure out the correct way to normalize the images (and when to normalize them) in order to get images that looked right. I also spent quite some time getting taj.jpg to sharpen properly due to what I believed was normalizing issues (though eventually I just tried a different method and it worked).
 
 <center>
 <h2>--- THE END ---</h2>
