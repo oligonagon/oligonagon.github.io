@@ -150,7 +150,7 @@ As we can see, this set of images look exactly the same as the set of images fro
 
 In this part, I attempt to 'sharpen' various images by adding a bit more of the high frequencies into the image. To do this, I first apply a low pass (Gaussian) filter onto the image and the lowpass image from the original image to isolate the higher frequencies. Then I add these higher frequencies back into the original image, multiplied by some scaling coefficient alpha. There is some clipping of pixel values when this happens, but it does not seem to negatively affect the quality of the final result. 
 
-I initially tried to implement the formal definition of an unsharp mask filter so that I could pre-compute a single filter to use on the original image. For some reason this did not work out so well, so I stuck to the earlier (and, in my opinion, more intuitive) steps of blurring, subtracting, then scaling and re-adding the higher frequencies.
+I initially tried to implement the formal definition of an unsharp mask filter so that I could pre-compute a single filter to use on the original image. For some reason this did not work out so well, so for a while I stuck to the earlier (and, in my opinion, more intuitive) steps of blurring, subtracting, then scaling and re-adding the higher frequencies. Eventually I found out that I was implementing the definition of a unit impulse matrix incorrectly; once I fixed that, it was working fine. Comparing both implementations, the results were identical, indicating that they are mathematically equivalent.
 
 <section id="two">
 <div class="column">
