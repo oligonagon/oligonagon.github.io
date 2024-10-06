@@ -220,25 +220,25 @@ I tried warping my face to this average Brazilian face's geometry, and vice vers
 
 In this part I tried extrapolating my face from the average Brazilian face, and vice versa. To do this, I computed the difference between my image's correspondence points and the mean image's correspondence points. I added this difference to my image's correspondence points, scaled by an alpha coefficient factor. To emphasize my features, I computed ((me - average)*alpha + me), and to emphasize the mean image's features, I computed ((average - me) * alpha + me). Note again that all of this is done on the correspondence points; I warped my image based on the resulting correspondence points. A higher alpha value resulted in a stronger extrapolation.
 
+Extrapolating my features:
 <section id="two">
 <div class="column">
     <div class="row">
         <article class="proj-item-1">
             <img src="../images/180proj3/me_caricature.png" alt="" />
             <br/>
-            <h3>Extrapolating my features</h3>
         </article>
     </div>
 </div>
 </section>
 
+Extrapolating the mean's features:
 <section id="two">
 <div class="column">
     <div class="row">
         <article class="proj-item-1">
             <img src="../images/180proj3/avg_caricature.png" alt="" />
             <br/>
-            <h3>Extrapolating the mean's features</h3>
         </article>
     </div>
 </div>
@@ -251,7 +251,7 @@ In this part I tried extrapolating my face from the average Brazilian face, and 
 I collected images of myself from 2005 to 2024, aligned them, and added correspondance points following the FEI face database's point assignment pattern. Then I created a morph sequence across all of these images. 
 
 <iframe width="560" height="315" 
-                    src="https://www.youtube.com/embed/sJYXgEZxj3Y?si=snZPU6Y5RCvlLEVF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                    src="https://youtube.com/shorts/yDkoAeu3T2o?feature=share" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
                 </iframe>  
 
 Time it took: 10.2 hours
