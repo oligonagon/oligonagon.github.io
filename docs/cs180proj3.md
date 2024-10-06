@@ -250,9 +250,14 @@ Extrapolating the mean's features:
 
 I collected images of myself from 2005 to 2024, aligned them, and added correspondance points following the FEI face database's point assignment pattern. Then I created a morph sequence across all of these images. 
 
-<iframe width="560" height="315" 
+<video width="320" height="240" controls>
+  <source src="../images/180proj3/me_movie.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+<!-- <iframe width="560" height="315" 
                     src="https://youtube.com/shorts/yDkoAeu3T2o?feature=share" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-                </iframe>  
+                </iframe>   -->
 
 Time it took: 10.2 hours
 
