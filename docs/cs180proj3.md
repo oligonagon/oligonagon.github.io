@@ -17,7 +17,8 @@ permalink: /cs180proj3/
 3. <a href="#three">The Morph Sequence"</a>
 4. <a href="#four">The "Mean Face" of a Population</a>
 5. <a href="#five">Caricatures: Extrapolating from the Mean</a>
-6. <a href="#six">Bells and Whistles</a>
+6. <a href="#six">Bells and Whistles -- Myself over the years</a>
+7. <a href="#seven">Bells and Whistles -- Gender change & other average faces</a>
 
 <br/>
 <a name = "one"></a>
@@ -243,7 +244,7 @@ Extrapolating the mean's features:
 </section>
 
 <a name = "six"></a>
-## 6. Bells & Whistles -- Myself over the years
+## 6a. Bells & Whistles -- Myself over the years
 
 I collected images of myself from 2005 to 2024, aligned them, and added correspondance points following the FEI face database's point assignment pattern. Then I created a morph sequence across all of these images. 
 
@@ -256,3 +257,160 @@ allowfullscreen></iframe>
 
 Time it took: 10.2 hours
 </center>
+
+<a name = "seven"></a>
+## 6b. Bells & Whistles -- Gender change & other average faces
+
+In this section, I used average faces I found on the Internet to morph myself (and others) into the opposite gender. I tried 3 different methods: warping input face to average face's geometry, warping average face to input face's geometry, and computing a "mid-way face" between both faces. The first two methods only involve inverse warping, while the third method involves both inverse warping and cross-dissolving. 
+
+Me morphed to the average Chinese man:
+
+<section id="two">
+<div class="column">
+    <div class="row">
+        <article class="proj-item-1">
+            <center><img src="../images/180proj3/olivia_cm.png" width="300vw" alt="" /></center>
+        </article>
+    </div>
+</div>
+</section>
+
+<section id="two">
+<div class="column">
+    <div class="row">
+        <article class="proj-item-1">
+            <center><img src="../images/180proj3/olivia_cm_result.png" width="500vw" alt="" />
+            <br/>
+            Left to right: me warped to avg's geometry, avg warped to my geometry, mid-way face
+            </center>
+            <br/>
+        </article>
+    </div>
+</div>
+</section>
+
+Me morphed to the average Chinese actor:
+<section id="two">
+<div class="column">
+    <div class="row">
+        <article class="proj-item-1">
+            <center><img src="../images/180proj3/olivia_cma.png" width="300vw" alt="" /></center>
+        </article>
+    </div>
+</div>
+</section>
+
+<section id="two">
+<div class="column">
+    <div class="row">
+        <article class="proj-item-1">
+            <center><img src="../images/180proj3/olivia_cma_result.png" width="500vw" alt="" />
+            <br/>
+            </center>
+        </article>
+        <br/>
+    </div>
+</div>
+</section>
+
+Aaron morphed to the average Chinese actress:
+
+<section id="two">
+<div class="column">
+    <div class="row">
+        <article class="proj-item-1">
+            <center><img src="../images/180proj3/aaron_cwa.png" width="300vw" alt="" /></center>
+        </article>
+    </div>
+</div>
+</section>
+
+<section id="two">
+<div class="column">
+    <div class="row">
+        <article class="proj-item-1">
+            <center><img src="../images/180proj3/aaron_cwa_result.png" width="500vw" alt="" />
+            <br/>
+            </center>
+        </article>
+        <br/>
+    </div>
+</div>
+</section>
+
+I also tried morphing myself to various average actress faces.
+
+Me morphed to the average Chinese actress:
+
+<section id="two">
+<div class="column">
+    <div class="row">
+        <article class="proj-item-1">
+            <center><img src="../images/180proj3/olivia_cwa.png" width="300vw" alt="" /></center>
+        </article>
+    </div>
+</div>
+</section>
+
+<section id="two">
+<div class="column">
+    <div class="row">
+        <article class="proj-item-1">
+            <center><img src="../images/180proj3/olivia_cwa_result.png" width="500vw" alt="" />
+            <br/>
+            </center>
+        </article>
+        <br/>
+    </div>
+</div>
+</section>
+
+Me morphed to the average Korean actress:
+
+<section id="two">
+<div class="column">
+    <div class="row">
+        <article class="proj-item-1">
+            <center><img src="../images/180proj3/olivia_kwa.png" width="300vw" alt="" /></center>
+        </article>
+    </div>
+</div>
+</section>
+
+<section id="two">
+<div class="column">
+    <div class="row">
+        <article class="proj-item-1">
+            <center><img src="../images/180proj3/olivia_kwa_result.png" width="500vw" alt="" />
+            <br/>
+            </center>
+        </article>
+        <br/>
+    </div>
+</div>
+</section>
+
+Me morphed to the average Japanese actress:
+
+<section id="two">
+<div class="column">
+    <div class="row">
+        <article class="proj-item-1">
+            <center><img src="../images/180proj3/olivia_jwa.png" width="300vw" alt="" /></center>
+        </article>
+    </div>
+</div>
+</section>
+
+<section id="two">
+<div class="column">
+    <div class="row">
+        <article class="proj-item-1">
+            <center><img src="../images/180proj3/olivia_jwa_result.png" width="500vw" alt="" />
+            <br/>
+            </center>
+        </article>
+        <br/>
+    </div>
+</div>
+</section>
