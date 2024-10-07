@@ -72,9 +72,8 @@ The final result is an interesting blend:
 <div class="column">
     <div class="row">
         <article class="proj-item-1">
-            <img src="../images/180proj3/rockcena_mesh.png" alt="" />
+            <center><img src="../images/180proj3/rockcena_mesh.png" width="500vw" alt="" /></center>
             <br/>
-            <h3>Computed average shape of the correspondence points</h3>
         </article>
     </div>
 </div>
@@ -114,7 +113,7 @@ Final morph sequence between the Rock and John Cena:
 <div class="column">
     <div class="row">
         <article class="proj-item-1">
-            <img src="../images/180proj3/rockcena.gif" alt="" />
+            <img src="../images/180proj3/rockcena.gif" width='300vw' alt="" />
             <br/>
             <h3>Rock Cena morph sequence</h3>
         </article>
@@ -128,7 +127,7 @@ I also created a morph sequence between the Rock and a rock (the same rock from 
 <div class="column">
     <div class="row">
         <article class="proj-item-1">
-            <img src="../images/180proj3/rockrock2.gif" alt="" />
+            <img src="../images/180proj3/rockrock2.gif" width="300vw" alt="" />
             <br/>
             <h3>Rorkrock returns</h3>
         </article>
@@ -142,25 +141,24 @@ I also created a morph sequence between the Rock and a rock (the same rock from 
 
 In this part, I took 200 faces from the <a href="https://fei.edu.br/~cet/facedatabase.html">FEI Face Database</a>, a Brazilian face database. Using the 46 correspondences provided, I computed the average shape across all 200 faces and warped each face to the average shape. For cross-dissolve, I took the average pixel value across all warped faces.
 
+Images 0, 1, and 2 from FEI database, warped to the average shape:
 <section id="two">
 <div class="column">
     <div class="row">
         <article class="proj-item-1">
-            <img src="../images/180proj3/smile_warped.jpg" alt="" />
+            <center><img src="../images/180proj3/smile_warped.jpg" width="300vw" alt="" /></center>
             <br/>
-            <h3>Images 0, 1, and 2 from FEI database, warped to the average shape</h3>
         </article>
     </div>
 </div>
 </section>
 
+Your average Brazilian smile:
 <section id="two">
 <div class="column">
     <div class="row">
         <article class="proj-item-1">
-            <img src="../images/180proj3/smile_avg.png" alt="" />
-            <br/>
-            <h3>Your average Brazilian smile</h3>
+            <img src="../images/180proj3/smile_avg.png" width="300vw" alt="" />
         </article>
     </div>
 </div>
@@ -206,9 +204,9 @@ I tried warping my face to this average Brazilian face's geometry, and vice vers
 <div class="column">
     <div class="row">
         <article class="proj-item-1">
-            <img src="../images/180proj3/me_and_avg.png" alt="" />
-            <br/>
+            <center><img src="../images/180proj3/me_and_avg.png" width="700vw" alt="" /></center>
             <h3>Me warped to average face geometry, and average faced warped to my geometry</h3>
+            <br/>
         </article>
     </div>
 </div>
@@ -225,7 +223,7 @@ Extrapolating my features:
 <div class="column">
     <div class="row">
         <article class="proj-item-1">
-            <img src="../images/180proj3/me_caricature.png" alt="" />
+            <center><img src="../images/180proj3/me_caricature.png" width="700vw" alt="" /></center>
             <br/>
         </article>
     </div>
@@ -237,27 +235,24 @@ Extrapolating the mean's features:
 <div class="column">
     <div class="row">
         <article class="proj-item-1">
-            <img src="../images/180proj3/avg_caricature.png" alt="" />
+            <center><img src="../images/180proj3/avg_caricature.png" width="700vw" alt="" /></center>
             <br/>
         </article>
     </div>
 </div>
 </section>
 
-<br/>
 <a name = "six"></a>
 ## 6. Bells & Whistles -- Myself over the years
 
 I collected images of myself from 2005 to 2024, aligned them, and added correspondance points following the FEI face database's point assignment pattern. Then I created a morph sequence across all of these images. 
 
-<video width="320" height="240" controls>
-  <source src="../images/180proj3/me_movie.mp4" type="video/mp4">
-Your browser does not support the video tag.
-</video>
-
-<!-- <iframe width="560" height="315" 
-                    src="https://youtube.com/shorts/yDkoAeu3T2o?feature=share" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-                </iframe>   -->
+<center><iframe width="50%"
+src="https://www.youtube.com/embed/yDkoAeu3T2o"
+title="YouTube video player"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+allowfullscreen></iframe>
 
 Time it took: 10.2 hours
-
+</center>
