@@ -250,6 +250,8 @@ Time it took to render: 10.2 hours
 
 In this section, I used average faces I found on the Internet to morph myself (and others) into the opposite gender. I tried 3 different methods (in the same order as the images below): warping input face to average face's geometry, warping average face to input face's geometry, and computing a "mid-way face" between both faces. The first two methods only involve inverse warping, while the third method involves both inverse warping and cross-dissolving.
 
+Also, all of the correspondences were marked manually, so any artifacts may be due to human error.
+
 Me morphed to the average Chinese man:
 
 <section id="two">
