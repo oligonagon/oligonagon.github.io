@@ -18,7 +18,7 @@ permalink: /cs180proj3/
 4. <a href="#four">The "Mean Face" of a Population</a><br/>
 5. <a href="#five">Caricatures: Extrapolating from the Mean</a><br/>
 6. <a href="#six">Bells and Whistles -- Myself over the years</a><br/>
-7. Bells and Whistles -- Other average faces<br/>
+7. <a href="#seven">Bells and Whistles -- Other average faces</a><br/>
     <a href="#sevena">Gender change</a><br/>
     <a href="#sevenb">Gender change with actor/actress</a><br/>
     <a href="#sevenc">Same gender actress morphs</a></center>
@@ -75,7 +75,7 @@ The final result is an interesting blend:
 <div class="column">
     <div class="row">
         <article class="proj-item-1">
-            <center><img src="../images/180proj3/rockcena_mesh.png" width="600vw" alt="" /></center>
+            <center><img src="../images/180proj3/rockcena_mesh.png" width="100%" alt="" /></center>
             <br/>
         </article>
     </div>
@@ -189,7 +189,7 @@ I tried warping my face to this average Brazilian face's geometry, and vice vers
     <div class="row">
         <article class="proj-item-1">
             <center><img src="../images/180proj3/me_and_avg.png" width="100%" alt="" /></center>
-            <h3>Me warped to average face geometry, and average faced warped to my geometry</h3>
+            <h3>Me warped to average face geometry, and average face warped to my geometry</h3>
             <br/>
         </article>
     </div>
@@ -231,7 +231,7 @@ Extrapolating the mean's features:
 <a name = "six"></a>
 ## 6. Bells & Whistles -- Myself over the years
 
-I collected images of myself from 2005 to 2024, aligned them, and added correspondance points following the FEI face database's point assignment pattern. Then I created a morph sequence across all of these images. 
+I collected images of myself from 2005 to 2024, aligned them, and added correspondence points following the FEI face database's point assignment pattern. Then I created a morph sequence across all of these images. 
 
 <center><iframe width="50%"
 src="https://www.youtube.com/embed/yDkoAeu3T2o"
@@ -243,6 +243,10 @@ allowfullscreen></iframe>
 Time it took to render: 10.2 hours
 </center>
 
+<br/>
+
+<a name = "seven"></a>
+<center><h2>7. Bells and Whistles -- Other average faces</h2></center>
 <br/>
 
 <a name = "sevena"></a>

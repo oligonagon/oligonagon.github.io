@@ -1595,7 +1595,7 @@ html {
 
 	body, input, select, textarea {
 		color: #a2a2a2;
-		font-family: "Century Gothic", "Lucida Console", Helvetica, sans-serif;
+		font-family: "Century Gothic", Helvetica, sans-serif;
 		font-size: 16pt;
 		font-weight: 400;
 		line-height: 1.75em;
