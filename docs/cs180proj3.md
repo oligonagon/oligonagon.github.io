@@ -65,7 +65,7 @@ To compute the "mid-way face" between two images, I took the average of the corr
 
 To avoid looping over the raw pixels, I used skimage.draw.polygon to create a mask over each triangle. With this method, I was able to extract multiple pixels from the starting image at once. 
 
-For coordinates that landed in between integers during the inverse warp, I determined the pixel value by rounding to the nearest integer. I also tried bilinear interpolation, but this ended up taking too long,and there was no significant difference between the two methods.
+For coordinates that landed in between whole numbers during the inverse warp, I determined the pixel value by rounding to the nearest whole number. I also tried bilinear interpolation, but this ended up taking too long,and there was no significant difference between the two methods.
 
 To cross-dissolve, I took the average pixel value between the two warped images. 
 
