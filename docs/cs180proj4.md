@@ -74,7 +74,7 @@ Below are the images I used for this project.
     </div>
 </section>
 
-### Campanile Area
+### Sutardja Dai Hall Area
 
 <section id="two">
     <div class="column">
