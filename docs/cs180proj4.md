@@ -80,11 +80,11 @@ Below are the images I used for this project.
     <div class="column">
         <div class="row">
             <article class="proj-item-2">
-                <img src="../images/180proj4/campa1_resize.jpg" width="200px" alt="" />
+                <img src="../images/180proj4/sdh1_resize.jpg" width="200px" alt="" />
                 <br/>
             </article>
             <article class="proj-item-2">
-                <img src="../images/180proj4/campa2_resize.jpg" width="200px" alt="" />
+                <img src="../images/180proj4/sdh2_resize.jpg" width="200px" alt="" />
                 <br/>
             </article>
         </div>
@@ -231,7 +231,7 @@ When naively overlaying the warped image onto the reference image, there is ofte
 <br/>
 </section>
 
-### Resulting mask from the distance transforms
+### Resulting mask from the distance transforms for blending Jacobs images
 
 <section id="two">
 <div class="column">
@@ -296,4 +296,4 @@ When naively overlaying the warped image onto the reference image, there is ofte
 </div>
 </section>
 
-<center> --- THE END --- </center>
+<center> --- THE END for now --- </center>
