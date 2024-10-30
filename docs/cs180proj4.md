@@ -530,6 +530,39 @@ We use the largest set of inliers as our final correspondence points for computi
 </section>
 <br/>
 
+## Lake
+<section id="two">
+<div class="column">
+    <div class="row">
+        <article class="proj-item-2">
+            <img src="../images/180proj4b/lake1.jpg" width="100px" alt="" />
+            <br/>
+        </article>
+        <article class="proj-item-2">
+            <img src="../images/180proj4b/lake3.jpg" width="100px" alt="" />
+            <br/>
+        </article>
+    </div>
+</div>
+</section>
+<section id="two">
+<div class="column">
+    <div class="row">
+        <article class="proj-item-2">
+            <h3>Final mosaic, naive</h3>
+            <img src="../images/180proj4b/lake_auto_naive.png" width="100px" alt="" />
+            <br/>
+        </article>
+        <article class="proj-item-2">
+            <h3>Final mosaic, blended</h3>
+            <img src="../images/180proj4b/lake_auto.png" width="100px" alt="" />
+            <br/>
+        </article>
+    </div>
+</div>
+</section>
+<br/>
+
 ## The coolest thing I have learned from this project
 
 Even though autostitching and RANSAC was fun to implement, I think the coolest part of the project was image rectification. Image rectification took me the longest to implement, and when it finally succeeded, I was very happy. Getting image rectification down also made image mosaicing later on less complicated.
