@@ -15,7 +15,15 @@ permalink: /cs180proj4/
 1. <a href="#one">Taking Pictures</a><br/>
 2. <a href="#twoo">Recovering Homographies</a><br/>
 3. <a href="#three">Image Rectification</a><br/>
-4. <a href="#four">Image Blending</a><br/></center>
+4. <a href="#four">Image Blending</a><br/>
+
+Autostitching
+5. <a href="#five">Harris Corner Detection</a><br/>
+6. <a href="#six">Adaptive Non-Maximal Suppression</a><br/>
+7. <a href="#seven">Feature Descriptor Extraction</a><br/>
+8. <a href="#eight">Feature Matching</a><br/>
+9. <a href="#nine">RANSAC</a><br/>
+10. <a href="#ten">Autostitching Results</a><br/></center>
 
 <br/>
 <a name = "one"></a>
@@ -296,4 +304,63 @@ When naively overlaying the warped image onto the reference image, there is ofte
 </div>
 </section>
 
-<center> --- THE END for now --- </center>
+# Autostitching
+
+In parts 1-4, I used manually defined correspondence points to compute a homography for the mosaic blending. But manually defining the points for each pair of images can be very tedious and also inaccurate. In the next parts, I implement a pipeline to autodetect suitable correspondence points. 
+
+<a name = "five"></a>
+
+## 5. Harris Corner Detection
+
+To obtain candidate correspondence points, I use Harris corner detection to detect corners in the two images. Corners are good candidates for correspondence since they capture change in all directions, as opposed to an edge. Corners also worked well when manually defining correspondence points.
+
+<a name = "six"></a>
+
+## 6. Adaptive Non-Maximal Suppression
+
+As one might notice above, Harris corner detection picks up too many candidate points... To help filter out candidate points, I implement Adaptive Non-Maximal Supression (ANMS). For each candidate point p, I keep the closest neighbor such that their strength (obtained from the Harris matrix) times the crobust (which I set to 0.9) is greater than the strength of p. I used a KDTree for efficient neighbor searching.
+
+By implementing ANMS, we are able to keep a number of candidate points that are evenly distributed throughout the image AND representing relatively strong corners. We are also able to choose how many candidate points k we would like to keep, by picking the k top points ordered by distance.
+
+<a name = "seven"></a>
+
+## 7. Feature Descriptor Extraction
+
+Now that we have our candidate points after ANMS, we would like to further narrow them down by matching them across the two images. First, we extract feature descriptors from each point. This means that for a point p, we obtain the 40x40 pixel patch around that point, Gaussian blur the patch, and subsample to obtian a 8x8 patch.
+
+Some examples of 8x8 patches, after normalization:
+
+
+<a name = "eight"></a>
+
+## 8. Feature Matching
+
+After obtaining 8x8 patches for all candidate points, I then match them with the 8x8 patches of candidate points on the other image using an SSD metric. For each candidate point p in the first image, I find the nearest neighbor and the second nearest neighbor. Two points are nearest neighbors if their 8x8 patches have the lowest SSD value out of all other pairings (with the first image's point). The second nearest neighbor is calcualted in a very similar way (using the second lowest SSD value).
+
+Once the first nearest and second nearest neighbors are calculated for point p, I then calculate the ratio 1-nn/2-nn. Here, 1-nn and 2-nn correspond to the SSD values between p and the nearest/second nearest neighbors, respectively. If this ratio turns out to be below some threshold (which I set to 0.3 by default), then I decide to keep point p and its nearest neighbor. The idea is that if the 1-nn is a better match than the 2-nn by a large enough difference, then we have a real match between point p and the 1-nn neighbor. 
+
+If the ratio does not meet the threshold, then we remove point p out of consideration. 
+
+<a name = "nine"></a>
+
+## 9. RANSAC
+
+On top of feature matching, we also use RANSAC to further filter out points that don't match well. The process is as follows:
+
+1. Sample 8 random pairs out of the feature matched pairs from part 8.
+2. Compute a homography using the 8 random pairs.
+3. For each point (out of the feature matched pairs) in the first image, apply homography and compute SSD between the result and the corresponding point in the second image.
+4. If the SSD is below some predetermine threshold, then we keep this pair of points and add it to the set of inliers. 
+5. Repeat steps 1-4 k times, and return the largest set of inliers. 
+
+We use the largest set of inliers as our final correspondence points for computing a homography and warping images to build a mosaic. 
+
+<a name = "ten"></a>
+
+## 10. Autostitching Results
+
+## The coolest thing I have learned from this project
+
+
+
+<center> --- THE END --- </center>
