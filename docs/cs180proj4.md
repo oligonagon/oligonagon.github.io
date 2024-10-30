@@ -408,7 +408,7 @@ If the ratio does not meet the threshold, then we remove point p out of consider
 
 <section id="two">
 <div class="column">
-    <h3>Feature matching results of Berkeley City Club images, with 53 point pairs meeting a threshold of 0.3</h3>
+    <h3>Feature matching results of Berkeley City Club images, with 53 point pairs meeting a threshold under 0.3</h3>
     <div class="row">
         <article class="proj-item-1">
             <center><img src="../images/180proj4b/bccs_lowe_53.png" width="700vw" alt="" /></center>
@@ -433,7 +433,7 @@ We use the largest set of inliers as our final correspondence points for computi
 
 <section id="two">
 <div class="column">
-    <h3>Final correspondence points after 2000 iterations, with a threshold of 30</h3>
+    <h3>Final correspondence points after 2000 iterations, with a threshold of under 30</h3>
     <div class="row">
         <article class="proj-item-1">
             <center><img src="../images/180proj4b/bcc_corresp_11.png" width="700vw" alt="" /></center>
