@@ -32,7 +32,7 @@ Autostitching
 
 ## 1. Taking Pictures
 
-Below are the images I used for this project.
+Below are the images I used for the first part of this project (sections 2-4).
 <section id="two">
 <div class="column">
     <div class="row">
