@@ -16,8 +16,10 @@ permalink: /cs180proj4/
 2. <a href="#twoo">Recovering Homographies</a><br/>
 3. <a href="#three">Image Rectification</a><br/>
 4. <a href="#four">Image Blending</a><br/>
+<br/>
 
 Autostitching
+<br/>
 5. <a href="#five">Harris Corner Detection</a><br/>
 6. <a href="#six">Adaptive Non-Maximal Suppression</a><br/>
 7. <a href="#seven">Feature Descriptor Extraction</a><br/>
@@ -298,14 +300,13 @@ When naively overlaying the warped image onto the reference image, there is ofte
         <article class="proj-item-2">
             <h3>Blended Mosaic</h3>
             <img src="../images/180proj4/sdh_warp_blend.png" width="100px" alt="" />
-            <br/>
         </article>
     </div>
 </div>
 </section>
+<br/>
 
-# Autostitching
-
+<center><h1>Autostitching</h1></center>
 In parts 1-4, I used manually defined correspondence points to compute a homography for the mosaic blending. But manually defining the points for each pair of images can be very tedious and also inaccurate. In the next parts, I implement a pipeline to autodetect suitable correspondence points. 
 
 <a name = "five"></a>
@@ -313,6 +314,16 @@ In parts 1-4, I used manually defined correspondence points to compute a homogra
 ## 5. Harris Corner Detection
 
 To obtain candidate correspondence points, I use Harris corner detection to detect corners in the two images. Corners are good candidates for correspondence since they capture change in all directions, as opposed to an edge. Corners also worked well when manually defining correspondence points.
+
+<section id="two">
+<div class="column">
+    <div class="row">
+        <article class="proj-item-1">
+            <center><img src="../images/180proj4b/bccs_harris_bad.png" width="700vw" alt="" /></center>
+        </article>
+    </div>
+</div>
+</section>
 
 <a name = "six"></a>
 
@@ -322,6 +333,22 @@ As one might notice above, Harris corner detection picks up too many candidate p
 
 By implementing ANMS, we are able to keep a number of candidate points that are evenly distributed throughout the image AND representing relatively strong corners. We are also able to choose how many candidate points k we would like to keep, by picking the k top points ordered by distance.
 
+<section id="two">
+<div class="column">
+    <h3>ANMS on Berkeley City Club, top 500 points</h3>
+    <div class="row">
+        <article class="proj-item-2">
+            <img src="../images/180proj4b/bcc2_harris_anms.png" width="100px" alt="" />
+            <br/>
+        </article>
+        <article class="proj-item-2">
+            <img src="../images/180proj4b/bcc3_harris_anms.png" width="100px" alt="" />
+            <br/>
+        </article>
+    </div>
+</div>
+</section>
+
 <a name = "seven"></a>
 
 ## 7. Feature Descriptor Extraction
@@ -329,7 +356,45 @@ By implementing ANMS, we are able to keep a number of candidate points that are 
 Now that we have our candidate points after ANMS, we would like to further narrow them down by matching them across the two images. First, we extract feature descriptors from each point. This means that for a point p, we obtain the 40x40 pixel patch around that point, Gaussian blur the patch, and subsample to obtian a 8x8 patch.
 
 Some examples of 8x8 patches, after normalization:
+<section id="two">
+<div class="column">
+    <h3>Sample 8x8 patches of above left image</h3>
+    <div class="row">
+        <article class="proj-item-3">
+            <img src="../images/180proj4b/bcc2_features0.png" width="200px" alt="" />
+            <br/>
+        </article>
+        <article class="proj-item-3">
+            <img src="../images/180proj4b/bcc2_features70.png" width="200px" alt="" />
+            <br/>
+        </article>
+        <article class="proj-item-3">
+            <img src="../images/180proj4b/bcc2_features100.png" width="200px" alt="" />
+            <br/>
+        </article>
+    </div>
+</div>
+</section>
 
+<section id="two">
+<div class="column">
+    <h3>Sample 8x8 patches of above right image</h3>
+    <div class="row">
+        <article class="proj-item-3">
+            <img src="../images/180proj4b/bcc3_features0.png" width="200px" alt="" />
+            <br/>
+        </article>
+        <article class="proj-item-3">
+            <img src="../images/180proj4b/bcc3_features70.png" width="200px" alt="" />
+            <br/>
+        </article>
+        <article class="proj-item-3">
+            <img src="../images/180proj4b/bcc3_features100.png" width="200px" alt="" />
+            <br/>
+        </article>
+    </div>
+</div>
+</section>
 
 <a name = "eight"></a>
 
@@ -341,6 +406,17 @@ Once the first nearest and second nearest neighbors are calculated for point p, 
 
 If the ratio does not meet the threshold, then we remove point p out of consideration. 
 
+<section id="two">
+<div class="column">
+    <h3>Feature matching results of Berkeley City Club images, with 53 point pairs meeting a threshold of 0.3</h3>
+    <div class="row">
+        <article class="proj-item-1">
+            <center><img src="../images/180proj4b/bccs_lowe_53.png" width="700vw" alt="" /></center>
+        </article>
+    </div>
+</div>
+</section>
+
 <a name = "nine"></a>
 
 ## 9. RANSAC
@@ -350,17 +426,112 @@ On top of feature matching, we also use RANSAC to further filter out points that
 1. Sample 8 random pairs out of the feature matched pairs from part 8.
 2. Compute a homography using the 8 random pairs.
 3. For each point (out of the feature matched pairs) in the first image, apply homography and compute SSD between the result and the corresponding point in the second image.
-4. If the SSD is below some predetermine threshold, then we keep this pair of points and add it to the set of inliers. 
+4. If the SSD is below some predetermined threshold, then we keep this pair of points and add it to the set of inliers. 
 5. Repeat steps 1-4 k times, and return the largest set of inliers. 
 
 We use the largest set of inliers as our final correspondence points for computing a homography and warping images to build a mosaic. 
 
+<section id="two">
+<div class="column">
+    <h3>Final correspondence points after 2000 iterations, with a threshold of 30</h3>
+    <div class="row">
+        <article class="proj-item-1">
+            <center><img src="../images/180proj4b/bcc_corresp_11.png" width="700vw" alt="" /></center>
+        </article>
+    </div>
+</div>
+</section>
+
+<section id="two">
+<div class="column">
+    <div class="row">
+        <article class="proj-item-2">
+            <h3>Final mosaic, naive</h3>
+            <img src="../images/180proj4b/bcc_auto_naive.png" width="100px" alt="" />
+            <br/>
+        </article>
+        <article class="proj-item-2">
+            <h3>Final mosaic, blended</h3>
+            <img src="../images/180proj4b/bcc_auto.png" width="100px" alt="" />
+            <br/>
+        </article>
+    </div>
+</div>
+</section>
+
 <a name = "ten"></a>
 
-## 10. Autostitching Results
+## 10. Autostitching Results (of more images)
+<br/>
+
+## SF Mural
+<section id="two">
+<div class="column">
+    <div class="row">
+        <article class="proj-item-2">
+            <img src="../images/180proj4b/mural1.jpg" width="100px" alt="" />
+            <br/>
+        </article>
+        <article class="proj-item-2">
+            <img src="../images/180proj4b/mural3.jpg" width="100px" alt="" />
+            <br/>
+        </article>
+    </div>
+</div>
+</section>
+<section id="two">
+<div class="column">
+    <div class="row">
+        <article class="proj-item-2">
+            <h3>Final mosaic, naive</h3>
+            <img src="../images/180proj4b/mural_auto_naive.png" width="100px" alt="" />
+            <br/>
+        </article>
+        <article class="proj-item-2">
+            <h3>Final mosaic, blended</h3>
+            <img src="../images/180proj4b/mural_auto.png" width="100px" alt="" />
+            <br/>
+        </article>
+    </div>
+</div>
+</section>
+<br/>
+
+## Paddingston Station
+<section id="two">
+<div class="column">
+    <div class="row">
+        <article class="proj-item-2">
+            <img src="../images/180proj4b/station1.jpg" width="100px" alt="" />
+            <br/>
+        </article>
+        <article class="proj-item-2">
+            <img src="../images/180proj4b/station3.jpg" width="100px" alt="" />
+            <br/>
+        </article>
+    </div>
+</div>
+</section>
+<section id="two">
+<div class="column">
+    <div class="row">
+        <article class="proj-item-2">
+            <h3>Final mosaic, naive</h3>
+            <img src="../images/180proj4b/station_auto2_naive.png" width="100px" alt="" />
+            <br/>
+        </article>
+        <article class="proj-item-2">
+            <h3>Final mosaic, blended</h3>
+            <img src="../images/180proj4b/station_auto2.png" width="100px" alt="" />
+            <br/>
+        </article>
+    </div>
+</div>
+</section>
+<br/>
 
 ## The coolest thing I have learned from this project
 
-
+Even though autostitching and RANSAC was fun to implement, I think the coolest part of the project was image rectification. Image rectification took me the longest to implement, and when it finally succeeded, I was very happy. Getting image rectification down also made image mosaicing later on less complicated.
 
 <center> --- THE END --- </center>
