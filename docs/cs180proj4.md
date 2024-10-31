@@ -497,7 +497,7 @@ We use the largest set of inliers as our final correspondence points for computi
 </section>
 <br/>
 
-## Paddingston Station
+## Paddington Station
 <section id="two">
 <div class="column">
     <div class="row">
