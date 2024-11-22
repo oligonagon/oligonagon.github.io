@@ -30,6 +30,7 @@ Diffusion Models from Scratch
 <br/>
 13. <a href="#thirteen">Training a Single-Step Denoising UNet</a><br/>
 14. <a href="#fourteen">Training a Diffusion Model</a><br/>
+15. <a href="#fifteen">Bell & Whistle: Denoising GIFs</a><br/>
 
 </center>
 <br/>
@@ -545,7 +546,7 @@ The previous examples of image-to-image translation and inpainting were all used
 </section>
 <br/>
 
-### Kiryu in Yakuza 3, text conditioned with 'a photo of a hipster barista' to replace his head
+### Kiryu in Yakuza 3, text conditioned with 'a photo of a hipster barista' to replace his head (the results don't seem to blend in the best way for every noise level)
 
 <section id="two">
 <div class="column">
@@ -1035,6 +1036,49 @@ Sampling results for epoch 20:
     <div class="row">
         <article class="proj-item-1">
             <center><img src="../images/180proj5/5b/class_epoch19.png" width="500vw" alt="" /></center>
+        </article>
+    </div>
+</div>
+</section>
+<br/>
+
+<a name = "fifteen"></a>
+
+## Denoising GIFs
+
+Time-conditioned UNet:
+
+<section id="two">
+<div class="column">
+    <div class="row">
+        <article class="proj-item-1">
+            <center><img src="../images/180proj5/5b/time.gif" width="500vw" alt="" /></center>
+        </article>
+    </div>
+</div>
+</section>
+<br/>
+
+Class-conditioned UNet:
+
+<section id="two">
+<div class="column">
+    <div class="row">
+        <article class="proj-item-1">
+            <center><img src="../images/180proj5/5b/class.gif" width="500vw" alt="" /></center>
+        </article>
+    </div>
+</div>
+</section>
+<br/>
+
+Class-conditioned UNet with c vector of all zeroes:
+
+<section id="two">
+<div class="column">
+    <div class="row">
+        <article class="proj-item-1">
+            <center><img src="../images/180proj5/5b/class_uncond.gif" width="500vw" alt="" /></center>
         </article>
     </div>
 </div>
