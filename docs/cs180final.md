@@ -62,7 +62,7 @@ I implemented this on the chessboard image set. The set was a 17x17 image grid, 
 
 ### Aperture Adjustment
 
-We can also simulate varying depths of field using light field data. While keeping c constant, we can adjust the number of images to average. For instance, a window size of [-2,2] would include the images surrounding the center image that are within 2 units of the grid. This would look like drawing a sub-square at the center within the image grid.
+We can also simulate varying depths of field using light field data. While keeping c constant, we can adjust the number of images to average. For instance, a window size of [-2,2] would include the images within 2 units to the left and right of the center image.
 
 A smaller window corresponded with a smaller aperture and deeper DoF, while a larger window corresponded with a larger aperture and shallower DoF.
 
