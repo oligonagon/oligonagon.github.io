@@ -6,6 +6,11 @@ permalink: /code/
 
 # Coding Projects
 
+## Computer Vision Portfolio
+A series of projects I completed for CS180, the introductory computer vision course at UC Berkeley. Fall 2024.
+<a href="/cs180/"> Link to portfolio</a>
+<br>
+
 ## Mango Genomics
 Bioinformatics project investigating the phylogeny of mango cultivars. Fall 2022.
 <a href="../projects/mango.pdf"> Final report</a>
